@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<?php
+
+if (isset($_POST['fin'])) {
+	
+    if (empty($_POST['sportifyid']) || empty($_POST['sportifypw']))
+        echo "Username or Password is empty";
+    else {
+		
+        $sportifyid = $_POST['sportifyid'];
+        $sportifypw = $_POST['sportifypw'];
+        $sportifyid = stripslashes($sportifyid);
+        $sportifypw = stripslashes($sportifypw);
+        $con = mysqli_connect("localhost", "root", "", "sportify");
+        $sql = "select * from sportifyadmin where pw='$sportifypw' 
+		         AND id='$sportifyid'";
+        $result = mysqli_query($con, $sql); 
+        $nbrows = mysqli_num_rows($result); 
+        if ($nbrows == 1) {
+            $res = mysqli_fetch_array($result);
+            session_start();
+           	$_SESSION['sportifyid'] = $sportifyid;
+         	$_SESSION['sportifypw'] = $sportifypw;		
+			header("location:sportifyadmin.php?id=". $sportifyid);
+        } else{
+            echo "Username or Password is invalid";
+			session_destroy();
+		}
+        mysqli_close($con); // Closing Connection
+    }
+}
+?>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Sportify Admin Sign In</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
+<link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
+<link rel="stylesheet" href="css/adminsignstyle.css">
+</head>
+<body>
+      <div class="container">
+    <form class="well form-horizontal" action="<?php echo $_SERVER['PHP_SELF']?>" method="post"  id="contact_form">
+<fieldset>
+<legend><center><h2><b>SIGN IN</b></h2></center></legend><br>
+
+ 
+<div class="form-group">
+  <label class="col-md-4 control-label">ID</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input name="sportifyid"  class="form-control" type="text">
+    </div>
+  </div>
+</div>
+       
+<div class="form-group">
+  <label class="col-md-4 control-label">Password</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+  <input name="sportifypw" class="form-control" type="password">
+    </div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+
+<!-- Success message -->
+<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Success!.</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-4" style="margin-left: 50px;"><br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" name="fin" formmethod="post" class="btn btn-primary" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSIGN IN <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>
+    </div><!-- /.container -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+
+
+
+    <script  src="js/sportifySignin.js"></script>
+
+<script>  
+
+
+</script>
+
+
+</body>
+
+</html>

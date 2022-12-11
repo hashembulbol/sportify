@@ -1,0 +1,143 @@
+@charset "UTF-8";
+/* Autor: Rafael F. Andrade */
+
+*, *::before, *::after {  
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+         -o-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+ 
+body {
+  font: 15px arial;
+  color: rgba(0, 0, 0, .7);
+  padding: 10px;
+  position: relative;
+
+  background-repeat: repeat;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size:cover;
+  background-size: cover;
+  background-position: center;
+}
+ 
+.wrapper {
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+ 
+.info-box {
+  min-width: 96%;
+  padding: 15px 5px;
+  margin: 0 auto;
+  background-color: rgba(255,255,255,.9);
+  border: 1px solid #fff;
+  border-radius: 6px;
+  box-shadow: 8px 5px 10px rgba(0,0,0,.2);
+  text-align: center;
+  z-index: 10;
+}
+
+.local {
+  font-size: 25px;
+  margin-bottom: 18px;
+}
+
+#city {
+  color: #444;
+}
+
+#country {
+  font-weight: 600;
+}
+
+#icon-weather {
+  font-size: 100px;
+}
+
+.temperature {
+  font-size: 60px;
+  color: #2c3e50;
+}
+
+#temp-type {
+  font-size: 30px;
+  color: #333;
+}
+
+#temp-status {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+#btn-change {
+  font-size: 20px;
+  margin-left: 3px;
+  color: #c0392b;
+  cursor: pointer;
+}
+
+#btn-change:hover {
+  color: #ff0000; 
+}
+
+.dev-author {
+  color: #aaa;
+  font-size: 12px;
+  border-radius: 3px;
+  padding: 6px;
+  background-color: rgba(0,0,0,.2);
+  bottom: 5px;
+  right: 10px;
+  position: absolute;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    -o-transition: background 1s ease-in;
+    -ms-transition: background 1s ease-in;
+    -moz-transition: background 1s ease-in;
+    -webkit-transition: background 1s ease-in;
+    transition: background 1s ease-in;
+  }
+  
+  .info-box {
+    min-width: 600px;
+    min-height: 200px;
+    padding: 30px 10px;
+    margin: 0 auto;
+    background-color: rgba(255,255,255,.9);
+    border: 1px solid #fff;
+    border-radius: 6px;
+    box-shadow: 8px 5px 10px rgba(0,0,0,.2);
+    text-align: center;
+    z-index: 10;
+  }
+  
+  .local {
+    font-size: 60px;
+  }
+  
+  #icon-weather {
+    font-size: 80px;
+  }
+  
+  #temp-status {
+    margin-bottom: 10px;
+  }
+}
